@@ -42,7 +42,7 @@ namespace EFCoreTestApi.Migrations
 
                     b.HasIndex("UserDetailId");
 
-                    b.ToTable("user", (string)null);
+                    b.ToTable("SysUser");
                 });
 
             modelBuilder.Entity("EFCoreTestApi.UserDetail", b =>
@@ -63,7 +63,7 @@ namespace EFCoreTestApi.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("userDetail", (string)null);
+                    b.ToTable("SysUserDetail");
                 });
 
             modelBuilder.Entity("EFCoreTestApi.User", b =>

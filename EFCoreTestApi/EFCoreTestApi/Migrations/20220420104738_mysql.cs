@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace EFCoreTestApi.Migrations
 {
-    public partial class InitalCreate : Migration
+    public partial class mysql : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,7 +13,7 @@ namespace EFCoreTestApi.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "userDetail",
+                name: "SysUserDetail",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
@@ -24,12 +24,12 @@ namespace EFCoreTestApi.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_userDetail", x => x.Id);
+                    table.PrimaryKey("PK_SysUserDetail", x => x.Id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "user",
+                name: "SysUser",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
@@ -41,28 +41,28 @@ namespace EFCoreTestApi.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_user", x => x.Id);
+                    table.PrimaryKey("PK_SysUser", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_user_userDetail_UserDetailId",
+                        name: "FK_SysUser_SysUserDetail_UserDetailId",
                         column: x => x.UserDetailId,
-                        principalTable: "userDetail",
+                        principalTable: "SysUserDetail",
                         principalColumn: "Id");
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateIndex(
-                name: "IX_user_UserDetailId",
-                table: "user",
+                name: "IX_SysUser_UserDetailId",
+                table: "SysUser",
                 column: "UserDetailId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "user");
+                name: "SysUser");
 
             migrationBuilder.DropTable(
-                name: "userDetail");
+                name: "SysUserDetail");
         }
     }
 }

@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EFCoreTestApi.Migrations
 {
     [DbContext(typeof(MySqlDbContext))]
-    [Migration("20220419125749_InitalCreate")]
-    partial class InitalCreate
+    [Migration("20220420104738_mysql")]
+    partial class mysql
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -44,7 +44,7 @@ namespace EFCoreTestApi.Migrations
 
                     b.HasIndex("UserDetailId");
 
-                    b.ToTable("user", (string)null);
+                    b.ToTable("SysUser");
                 });
 
             modelBuilder.Entity("EFCoreTestApi.UserDetail", b =>
@@ -65,7 +65,7 @@ namespace EFCoreTestApi.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("userDetail", (string)null);
+                    b.ToTable("SysUserDetail");
                 });
 
             modelBuilder.Entity("EFCoreTestApi.User", b =>

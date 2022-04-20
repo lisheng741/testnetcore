@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EFCoreTestApi;
 
@@ -9,6 +10,7 @@ public abstract class EntityBase
     public virtual Guid Id { get; set; } = new Guid();
 }
 
+[Table("SysUser")]
 public class User : EntityBase
 {
     [MaxLength(128)]
@@ -22,6 +24,7 @@ public class User : EntityBase
     public virtual UserDetail? UserDetail { get; set; }
 }
 
+[Table("SysUserDetail")]
 public class UserDetail : EntityBase
 {
     [MaxLength(128)]
