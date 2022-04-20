@@ -19,6 +19,7 @@ namespace DbFirstTest.Data
 
         public virtual DbSet<SysUser> SysUsers { get; set; } = null!;
         public virtual DbSet<SysUserDetail> SysUserDetails { get; set; } = null!;
+        public virtual DbSet<Test> Tests { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -47,6 +48,11 @@ namespace DbFirstTest.Data
                 entity.Property(e => e.Email).HasComment("邮箱");
 
                 entity.Property(e => e.Phone).HasComment("手机");
+            });
+
+            modelBuilder.Entity<Test>(entity =>
+            {
+                entity.Property(e => e.Id).ValueGeneratedNever();
             });
 
             OnModelCreatingPartial(modelBuilder);
