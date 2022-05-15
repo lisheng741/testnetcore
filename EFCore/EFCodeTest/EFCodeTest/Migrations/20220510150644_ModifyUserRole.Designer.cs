@@ -4,6 +4,7 @@ using EFCodeTest.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EFCodeTest.Migrations
 {
     [DbContext(typeof(EDbContext))]
-    partial class EDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220510150644_ModifyUserRole")]
+    partial class ModifyUserRole
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,49 +23,6 @@ namespace EFCodeTest.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
-
-            modelBuilder.Entity("EFCodeTest.Models.Blog", b =>
-                {
-                    b.Property<int>("BlogId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BlogId"), 1L, 1);
-
-                    b.Property<string>("Url")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("BlogId");
-
-                    b.ToTable("Blog");
-                });
-
-            modelBuilder.Entity("EFCodeTest.Models.Post", b =>
-                {
-                    b.Property<int>("PostId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PostId"), 1L, 1);
-
-                    b.Property<int?>("BlogId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Content")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("PostId");
-
-                    b.HasIndex("BlogId");
-
-                    b.ToTable("Post");
-                });
 
             modelBuilder.Entity("EFCodeTest.Models.Role", b =>
                 {
@@ -136,15 +95,6 @@ namespace EFCodeTest.Migrations
                     b.ToTable("UserRole");
                 });
 
-            modelBuilder.Entity("EFCodeTest.Models.Post", b =>
-                {
-                    b.HasOne("EFCodeTest.Models.Blog", "Blog")
-                        .WithMany("Posts")
-                        .HasForeignKey("BlogId");
-
-                    b.Navigation("Blog");
-                });
-
             modelBuilder.Entity("EFCodeTest.Models.UserDetail", b =>
                 {
                     b.HasOne("EFCodeTest.Models.User", "User")
@@ -169,11 +119,6 @@ namespace EFCodeTest.Migrations
                     b.Navigation("Role");
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("EFCodeTest.Models.Blog", b =>
-                {
-                    b.Navigation("Posts");
                 });
 
             modelBuilder.Entity("EFCodeTest.Models.User", b =>
