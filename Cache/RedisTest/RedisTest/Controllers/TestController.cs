@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Distributed;
 using System.Text;
 
@@ -20,7 +19,7 @@ public class TestController : ControllerBase
     public async Task Set(string key, string value, double expiration)
     {
         var encodedValue = Encoding.UTF8.GetBytes(value);
-        await _cache.SetAsync(key, encodedValue,new DistributedCacheEntryOptions() { AbsoluteExpiration = DateTime.Now.AddSeconds(expiration) });
+        await _cache.SetAsync(key, encodedValue, new DistributedCacheEntryOptions() { AbsoluteExpiration = DateTime.Now.AddSeconds(expiration) });
     }
 
     [HttpGet]
