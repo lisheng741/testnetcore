@@ -31,6 +31,10 @@ namespace EFCodeTest.Data
                 .WithMany(b => b.Posts)
                 .IsRequired(false);
 
+            builder.Entity<Order>()
+                .HasMany(p => p.Lines)
+                .WithOne();
+
             base.OnModelCreating(builder);
         }
 
@@ -45,9 +49,6 @@ namespace EFCodeTest.Data
         public virtual DbSet<User> User { get; set; }
         public virtual DbSet<Role> Role { get; set; }
         public virtual DbSet<Blog> Blog { get; set; }
-
-        private IQueryable<T> GetQueryable<T>() where T :class
-        {
-        }
+        public virtual DbSet<Order> Order { get; set; }
     }
 }

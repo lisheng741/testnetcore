@@ -4,6 +4,7 @@ using EFCodeTest.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EFCodeTest.Migrations
 {
     [DbContext(typeof(EDbContext))]
-    partial class EDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220515075722_AddOrder")]
+    partial class AddOrder
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -36,7 +38,7 @@ namespace EFCodeTest.Migrations
 
                     b.HasKey("BlogId");
 
-                    b.ToTable("Blog", (string)null);
+                    b.ToTable("Blog");
                 });
 
             modelBuilder.Entity("EFCodeTest.Models.Order", b =>
@@ -53,7 +55,7 @@ namespace EFCodeTest.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Order", (string)null);
+                    b.ToTable("Order");
                 });
 
             modelBuilder.Entity("EFCodeTest.Models.OrderLine", b =>
@@ -75,7 +77,7 @@ namespace EFCodeTest.Migrations
 
                     b.HasIndex("OrderId");
 
-                    b.ToTable("OrderLine", (string)null);
+                    b.ToTable("OrderLine");
                 });
 
             modelBuilder.Entity("EFCodeTest.Models.Post", b =>
@@ -101,7 +103,7 @@ namespace EFCodeTest.Migrations
 
                     b.HasIndex("BlogId");
 
-                    b.ToTable("Post", (string)null);
+                    b.ToTable("Post");
                 });
 
             modelBuilder.Entity("EFCodeTest.Models.Role", b =>
@@ -118,7 +120,7 @@ namespace EFCodeTest.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("SysRole", (string)null);
+                    b.ToTable("SysRole");
                 });
 
             modelBuilder.Entity("EFCodeTest.Models.User", b =>
@@ -135,7 +137,7 @@ namespace EFCodeTest.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("SysUser", (string)null);
+                    b.ToTable("SysUser");
                 });
 
             modelBuilder.Entity("EFCodeTest.Models.UserDetail", b =>
@@ -157,7 +159,7 @@ namespace EFCodeTest.Migrations
                     b.HasIndex("UserId")
                         .IsUnique();
 
-                    b.ToTable("UserDetail", (string)null);
+                    b.ToTable("UserDetail");
                 });
 
             modelBuilder.Entity("EFCodeTest.Models.UserRole", b =>
@@ -172,7 +174,7 @@ namespace EFCodeTest.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("UserRole", (string)null);
+                    b.ToTable("UserRole");
                 });
 
             modelBuilder.Entity("EFCodeTest.Models.OrderLine", b =>
