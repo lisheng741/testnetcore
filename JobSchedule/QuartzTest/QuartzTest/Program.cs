@@ -13,7 +13,11 @@ builder.Services.AddQuartz(config =>
     config.UseMicrosoftDependencyInjectionJobFactory();
 
     config.AddJob<TestJob>(options => options.WithIdentity("Test"));
-    config.AddTrigger(options => options.)
+    config.AddTrigger(options =>
+        options.ForJob("Test")
+        .WithIdentity("Test-Trigger")
+        .WithCronSchedule("0/5 * * * * ?")
+    ); 
 });
 
 // Quartz.Extensions.Hosting allows you to fire background service that handles scheduler lifecycle
