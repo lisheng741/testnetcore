@@ -40,6 +40,6 @@ public class EDbContext : DbContext
 
     public virtual IQueryable<T> GetQueryable<T>() where T : class, IDeleteEntity
     {
-        return Set<T>().Where(t => t.Deleted == false);
+        return Set<T>().AsQueryable();
     }
 }
