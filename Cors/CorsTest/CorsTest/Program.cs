@@ -4,6 +4,7 @@ var configuration = builder.Configuration;
 var s = configuration["AllowCors:1"];
 //var urls = configuration.GetValue<string[]>("AllowCors"); //这个不行
 var urls = configuration.GetSection("AllowCors").Get<string []>();
+var lst = configuration.GetSection("AllowCors").Get<IEnumerable<string>>();
 
 // Add services to the container.
 
