@@ -13,23 +13,23 @@ builder.Services.AddQuartz(config =>
     config.UseMicrosoftDependencyInjectionJobFactory();
 
 
-    //config.AddJob<TestJob>(options => options.WithIdentity("Test"));
-    //config.AddTrigger(options =>
-    //    options.ForJob("Test")
-    //    .WithIdentity("Test-Trigger")
-    //    .WithCronSchedule("0/5 * * * * ?")
-    //);
-
-    var jobType = Type.GetType("QuartzTest.Jobs.TestJob");
-    if (jobType != null)
-    {
-        config.AddJob(jobType, configure: options => options.WithIdentity("Test"));
-    }
+    config.AddJob<TestJob>(options => options.WithIdentity("Test"));
     config.AddTrigger(options =>
         options.ForJob("Test")
         .WithIdentity("Test-Trigger")
         .WithCronSchedule("0/5 * * * * ?")
     );
+
+    //var jobType = Type.GetType("QuartzTest.Jobs.TestJob");
+    //if (jobType != null)
+    //{
+    //    config.AddJob(jobType, configure: options => options.WithIdentity("Test"));
+    //}
+    //config.AddTrigger(options =>
+    //    options.ForJob("Test")
+    //    .WithIdentity("Test-Trigger")
+    //    .WithCronSchedule("0/5 * * * * ?")
+    //);
 
 });
 

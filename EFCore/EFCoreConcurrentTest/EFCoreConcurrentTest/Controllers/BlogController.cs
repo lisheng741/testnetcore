@@ -33,7 +33,7 @@ namespace EFCoreConcurrentTest.Controllers
             _db.Add(blog);
 
             await Task.Delay(5000);
-
+            
             _db.SaveChanges();
         }
 
