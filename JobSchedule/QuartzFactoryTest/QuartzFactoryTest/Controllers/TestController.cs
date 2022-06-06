@@ -15,6 +15,9 @@ namespace QuartzFactoryTest.Controllers
         }
 
         [HttpGet]
+        public async Task Start() => await QuartzService.Start();
+
+        [HttpGet]
         public async Task AddJob(string jobName, string cron)
         {
             await QuartzService.AddJob(jobName, cron);
@@ -24,6 +27,18 @@ namespace QuartzFactoryTest.Controllers
         public async Task RemoveJob(string jobName)
         {
             await QuartzService.RemoveJob(jobName);
+        }
+
+        [HttpGet]
+        public async Task PauseJob(string jobName)
+        {
+            await QuartzService.PauseJob(jobName);
+        }
+
+        [HttpGet]
+        public async Task ResumeJob(string jobName)
+        {
+            await QuartzService.ResumeJob(jobName);
         }
     }
 }

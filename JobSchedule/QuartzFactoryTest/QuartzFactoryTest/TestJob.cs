@@ -17,7 +17,7 @@ public class TestJob : IJob
         var jobName = map.GetString("name");
 
         _logger.LogInformation($"{jobName} in {Thread.CurrentThread.ManagedThreadId} run at {DateTime.Now}");
-        Console.WriteLine($"{jobName} in {Thread.CurrentThread.ManagedThreadId} run at {DateTime.Now}");
+        //Console.WriteLine($"{jobName} in {Thread.CurrentThread.ManagedThreadId} run at {DateTime.Now}");
 
         return Task.CompletedTask;
     }
