@@ -1,5 +1,6 @@
 using AuthenticationTest;
 using AuthenticationTest.Authorization;
+using IdentityModel;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.IdentityModel.Tokens;
@@ -47,8 +48,30 @@ builder.Services.AddAuthentication(options =>
         ValidateLifetime = true, //是否验证失效时间
         ClockSkew = TimeSpan.FromSeconds(30), //过期时间容错值，解决服务器端时间不同步问题（秒）
         RequireExpirationTime = true,
+        NameClaimType = JwtClaimTypes.Name
+    };
+    options.Events = new JwtBearerEvents()
+    {
+        OnChallenge = async context =>
+        {
+            context.Response.StatusCode = 401;
+            // 报错
+            await context.Response.WriteAsync("401");
+
+            // 完成相应
+            //context.Handled = true;
+            context.HandleResponse();
+
+            //return Task.CompletedTask;
+        },
+        OnForbidden = async context =>
+        {
+            //await context.Response.WriteAsync("403");
+        }
     };
 });
+
+
 
 builder.Services.AddSingleton(new JwtHelper(configuration));
 

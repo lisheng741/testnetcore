@@ -24,6 +24,7 @@ public class AccountController : ControllerBase
     [HttpGet]
     public ActionResult<string> GetTest()
     {
+        Console.WriteLine(HttpContext.User.Identity.Name);
         return "Test Authorize";
     }
 }
