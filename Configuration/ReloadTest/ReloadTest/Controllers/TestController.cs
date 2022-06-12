@@ -18,5 +18,11 @@ namespace ReloadTest.Controllers
         {
             return _configuration["Test"];
         }
+
+        [HttpGet]
+        public string GetConfigStatic()
+        {
+            return AppSettings.Test;
+        }
     }
 }
