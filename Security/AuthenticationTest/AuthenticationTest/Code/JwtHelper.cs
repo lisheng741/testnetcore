@@ -26,7 +26,9 @@ public class JwtHelper
             new Claim("Username", "Admin"),
             new Claim("Name", "超级管理员"),
             new Claim("Permission", Permissions.UserCreate),
-            new Claim("Permission", Permissions.UserUpdate)
+            new Claim("Permission", Permissions.UserUpdate),
+            new Claim(JwtRegisteredClaimNames.Nbf, DateTime.Now.ToString()),
+            new Claim(JwtRegisteredClaimNames.Exp, DateTime.Now.AddSeconds(30).ToString()),
         };
 
         // 2. 从 appsettings.json 中读取SecretKey
@@ -45,7 +47,7 @@ public class JwtHelper
             claims,                          //Claims,
             DateTime.Now,                    //notBefore
             DateTime.Now.AddSeconds(30),    //expires
-            signingCredentials               //Credentials
+            signingCredentials: signingCredentials               //Credentials
         );
 
         // 6. 将token变为string
