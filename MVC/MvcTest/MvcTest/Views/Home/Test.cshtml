@@ -1,0 +1,42 @@
+﻿@using MvcTest.Data;
+@model TestViewModel
+@{
+    Layout = null;
+
+    ViewData["Title"] = "Test Page";
+    string title = (string)ViewData["Title"];
+
+    var ef = new EfCoreContext();
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+
+    <p>ViewModel 演示</p>
+    <p>@Model.Name</p>
+
+    <p>ViewModel 列表演示</p>
+    <ul>
+        @foreach(var item in Model.Items)
+        {
+            <li>@item</li>
+        }
+    </ul>
+
+    @{
+
+    }
+
+    <p>ViewData 演示</p>
+    <p>@ViewData["Show"]</p>
+    <p>@ViewData["show"]</p>
+    <p>@ViewData["SHOW"]</p>
+
+    <p>
+        @{
+            string s = "1234";
+            s = s + "附近的会计法";
+        }
+        @s
+    </p>
+</div>

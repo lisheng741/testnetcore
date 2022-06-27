@@ -19,5 +19,11 @@ namespace DataAnnotationTest.Controllers
         {
             return model;
         }
+
+        [HttpPost("List")]
+        public List<TestModel> List(List<TestModel> models)
+        {
+            return models;
+        }
     }
 }
