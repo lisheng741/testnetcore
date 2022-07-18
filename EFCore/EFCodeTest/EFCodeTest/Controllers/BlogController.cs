@@ -40,6 +40,13 @@ public class BlogController : ControllerBase
         _db.SaveChanges();
     }
 
+    [HttpPost("Post2")]
+    public void Post2(Blog blog)
+    {
+        _db.Add(blog);
+        _db.SaveChanges();
+    }
+
     [HttpDelete]
     public bool Delete(int id)
     {

@@ -18,7 +18,7 @@ public class TestAuthorizationPolicyProvider : DefaultAuthorizationPolicyProvide
     {
         if (policyName.StartsWith(Permissions.User))
         {
-            var policy = new AuthorizationPolicyBuilder(JwtBearerDefaults.AuthenticationScheme);
+            var policy = new AuthorizationPolicyBuilder(Array.Empty<string>()); // JwtBearerDefaults.AuthenticationScheme
             policy.AddRequirements(new PermissionAuthorizationRequirement(policyName));
             return Task.FromResult<AuthorizationPolicy?>(policy.Build());
         }

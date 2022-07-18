@@ -29,6 +29,8 @@ internal class RedisManager
     {
         bool flag = false;
 
+        Console.WriteLine($"{DateTime.Now}  key【{key}】");
+
         try
         {
             flag = Connection.GetDatabase().StringSet(key, value, expiration, when: When.NotExists);

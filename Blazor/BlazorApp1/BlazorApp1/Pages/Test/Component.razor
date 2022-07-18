@@ -1,0 +1,14 @@
+﻿<h3>Component</h3>
+
+<p>@count</p>
+
+<button @onclick="Increment">add</button>
+
+@code {
+    private int count = 0;
+
+    private void Increment()
+    {
+        count++;
+    }
+}

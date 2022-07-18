@@ -1,0 +1,15 @@
+﻿@page "/test-page1/{name?}"
+
+<h3>TestPage1</h3>
+
+<p>@Name</p>
+
+@code {
+    [Parameter]
+    public string? Name { get; set; }
+
+    protected override void OnParametersSet()
+    {
+        Name ??= "default name";
+    }
+}

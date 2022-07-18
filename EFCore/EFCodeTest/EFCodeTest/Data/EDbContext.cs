@@ -1,5 +1,6 @@
 ﻿using EFCodeTest.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace EFCodeTest.Data
 {
@@ -10,6 +11,16 @@ namespace EFCodeTest.Data
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
             base.OnConfiguring(options);
+        }
+
+        public override EntityEntry Add(object entity)
+        {
+            return base.Add(entity);
+        }
+
+        public override EntityEntry<TEntity> Add<TEntity>(TEntity entity)
+        {
+            return base.Add(entity);
         }
 
         protected override void OnModelCreating(ModelBuilder builder)

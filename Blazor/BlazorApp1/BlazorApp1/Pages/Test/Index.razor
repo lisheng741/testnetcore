@@ -1,0 +1,30 @@
+﻿@page "/test"
+@inject IConfiguration Configuration
+
+<PageTitle>Test Index</PageTitle>
+
+<h3>Test Index</h3>
+
+<button @onclick="HandleToggle">Toggle</button>
+
+@if (toggle)
+{
+    <p>show 1111111111</p>
+
+    <Component></Component>
+    <Component></Component>
+}
+else
+{
+    <p>33333</p>
+    <Component></Component>
+}
+
+@code {
+    private bool toggle = true;
+
+    private void HandleToggle()
+    {
+        toggle = !toggle;
+    }
+}
