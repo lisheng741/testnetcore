@@ -1,4 +1,16 @@
 ﻿
+
+Class11 ic11 = new Class11();
+
+if(ic11 is IClass1 @class && @class.Name1 == "name1")
+{
+    Console.WriteLine(@class.Name1);
+}
+
+Console.WriteLine(@class == null);
+
+
+
 Class1 c1 = new Class1();
 
 Class11 c11 = new Class11();

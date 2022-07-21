@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace EFCoreTest.Migrations
+namespace QueryFilterTest.Migrations
 {
     [DbContext(typeof(EDbContext))]
     partial class EDbContextModelSnapshot : ModelSnapshot

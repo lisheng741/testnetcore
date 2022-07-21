@@ -1,5 +1,9 @@
-﻿
-public class Class1
+﻿public interface IClass1
+{
+    string Name1 { get; set; }
+}
+
+public class Class1 : IClass1
 {
     public string Name1 { get; set; } = "name1";
 }
