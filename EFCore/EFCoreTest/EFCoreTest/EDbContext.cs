@@ -55,6 +55,13 @@ namespace EFCoreTest
 
                     entityTypeBuilder.HasQueryFilter(Expression.Lambda(body, parameter));
                 }
+
+                var entityConfigure = Activator.CreateInstance(entityType) as EntityBase;
+                
+                if(entityConfigure != null)
+                {
+                    entityConfigure.ConfigureEntity(builder);
+                }
             }
         }
     }

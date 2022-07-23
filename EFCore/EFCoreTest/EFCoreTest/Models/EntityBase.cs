@@ -1,6 +1,13 @@
-﻿namespace EFCoreTest.Models;
+﻿using Microsoft.EntityFrameworkCore;
 
-public abstract class EntityBase { }
+namespace EFCoreTest.Models;
+
+public abstract class EntityBase
+{
+    public virtual void ConfigureEntity(ModelBuilder builder)
+    {
+    }
+}
 
 public abstract class EntityBase<TKey> : EntityBase
     where TKey : struct
