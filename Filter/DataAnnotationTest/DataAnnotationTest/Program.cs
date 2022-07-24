@@ -1,4 +1,7 @@
+using DataAnnotationTest;
+using DataAnnotationTest.Filters;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,28 +12,40 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// 方案1：自定义工厂
 builder.Services.Configure<ApiBehaviorOptions>(options =>
 {
     options.InvalidModelStateResponseFactory = actionContext =>
     {
         //获取验证失败的模型字段 
         var errors = actionContext.ModelState
-            .Where(e => e.Value.Errors.Count > 0)
-            .Select(e => e.Value.Errors.First().ErrorMessage)
+            .Where(s => s.Value != null && s.Value.ValidationState == ModelValidationState.Invalid)
+            .SelectMany(s => s.Value!.Errors.ToList())
+            .Select(e => e.ErrorMessage)
             .ToList();
 
-        var str = string.Join("|", errors);
-
-        //设置返回内容
-        var result = new
+        // 统一返回格式
+        var result = new ApiResult()
         {
-            Code = 10000,
-            Msg = "未通过数据验证。",
-            FullMsg = errors
+            Code = StatusCodes.Status400BadRequest,
+            Msg = "数据验证不通过！",
+            Data = errors
         };
 
         return new BadRequestObjectResult(result);
     };
+});
+
+// 方案2：自定义过滤器
+builder.Services.Configure<ApiBehaviorOptions>(options =>
+{
+    // 禁用默认模型验证过滤器
+    options.SuppressModelStateInvalidFilter = true;
+});
+builder.Services.Configure<MvcOptions>(options =>
+{
+    // 全局添加自定义模型验证过滤器
+    options.Filters.Add<DataValidationFilter>();
 });
 
 var app = builder.Build();
