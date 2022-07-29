@@ -1,0 +1,13 @@
+2022-07-28 23:02:54.7242 Warn Unused target detected. Add a rule for this target to the configuration. TargetName: blackhole
+2022-07-28 23:04:15.1411 Warn Unused target detected. Add a rule for this target to the configuration. TargetName: blackhole
+2022-07-28 23:05:42.2219 Warn Unused target detected. Add a rule for this target to the configuration. TargetName: blackhole
+2022-07-28 23:08:03.1314 Warn Unused target detected. Add a rule for this target to the configuration. TargetName: blackhole
+2022-07-28 23:09:06.4832 Warn Unused target detected. Add a rule for this target to the configuration. TargetName: blackhole
+2022-07-28 23:22:24.9519 Warn Unused target detected. Add a rule for this target to the configuration. TargetName: blackhole
+2022-07-29 08:30:13.4582 Warn Unused target detected. Add a rule for this target to the configuration. TargetName: blackhole
+2022-07-29 08:36:16.5881 Warn Unused target detected. Add a rule for this target to the configuration. TargetName: blackhole
+2022-07-29 11:17:42.7214 Warn Unused target detected. Add a rule for this target to the configuration. TargetName: blackhole
+2022-07-29 11:19:29.2544 Warn Unused target detected. Add a rule for this target to the configuration. TargetName: blackhole
+2022-07-29 11:22:45.3504 Warn Unused target detected. Add a rule for this target to the configuration. TargetName: lifetimeConsole
+2022-07-29 11:24:18.5975 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Target 'ownFile-web' not found for logging rule: Microsoft.Hosting.Lifetime.
+2022-07-29 11:33:25.5287 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Target 'ownFile-web' not found for logging rule: Microsoft.Hosting.Lifetime.

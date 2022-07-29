@@ -1,4 +1,9 @@
+using NLog.Web;
+
 var builder = WebApplication.CreateBuilder(args);
+
+//builder.Logging.ClearProviders();
+builder.Host.UseNLog();
 
 // Add services to the container.
 
@@ -8,6 +13,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+app.UseApiException();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
