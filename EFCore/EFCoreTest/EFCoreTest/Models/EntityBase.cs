@@ -10,13 +10,13 @@ public abstract class EntityBase
 }
 
 public abstract class EntityBase<TKey> : EntityBase
-    where TKey : struct
+    where TKey : IEquatable<TKey>
 {
     public TKey Id { get; set; }
 }
 
 public abstract class BusinessEntityBase<TKey> : EntityBase<TKey>, ISoftDelete, ICreatedInfo, IUpdatedInfo
-    where TKey : struct
+    where TKey : IEquatable<TKey>
 {
     public bool IsDeleted { get; set; }
     public DateTime? CreatedTime { get; set; }

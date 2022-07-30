@@ -4,6 +4,7 @@ using EFCoreTest;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EFCoreTest.Migrations
 {
     [DbContext(typeof(EDbContext))]
-    partial class EDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220730053748_0730-1")]
+    partial class _07301
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -77,7 +79,7 @@ namespace EFCoreTest.Migrations
                     b.ToTable("TestDelete");
                 });
 
-            modelBuilder.Entity("EFCoreTest.Models.TestGuid1", b =>
+            modelBuilder.Entity("EFCoreTest.Models.TestGuid", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd()
@@ -88,10 +90,10 @@ namespace EFCoreTest.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("TestGuid1");
+                    b.ToTable("TestGuid");
                 });
 
-            modelBuilder.Entity("EFCoreTest.Models.TestGuid2", b =>
+            modelBuilder.Entity("EFCoreTest.Models.TestGuidString", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd()
@@ -102,7 +104,7 @@ namespace EFCoreTest.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("TestGuid2");
+                    b.ToTable("TestGuidString");
                 });
 
             modelBuilder.Entity("EFCoreTest.Models.TestTenant", b =>

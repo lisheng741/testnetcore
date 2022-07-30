@@ -13,6 +13,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<EDbContext>(options => {
     options.UseSqlServer(configuration["ConnectionStrings:SqlServer"]);
+    //options.UseMySql("server=localhost;port=3306;database=efcore;user=root;password=123456;charset=utf8mb4;", ServerVersion.Parse("8.0.26"));
 });
 
 var app = builder.Build();

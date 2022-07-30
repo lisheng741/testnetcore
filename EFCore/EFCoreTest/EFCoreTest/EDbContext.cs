@@ -33,9 +33,20 @@ namespace EFCoreTest
                 .Where(t => t.IsSubclassOf(typeof(EntityBase)) && !t.IsAbstract)
                 .ToList();
 
-            foreach(Type entityType in entityTypes)
+            foreach (Type entityType in entityTypes)
             {
                 EntityTypeBuilder entityTypeBuilder = builder.Entity(entityType);
+
+                // 设置 Guid 类型
+                PropertyInfo[] propertyInfos = entityType.GetProperties();
+                foreach(PropertyInfo propertyInfo in propertyInfos)
+                {
+                    string propertyName = propertyInfo.Name;
+                    if(propertyInfo.PropertyType.FullName == "System.Guid")
+                    {
+                        entityTypeBuilder.Property(propertyName).HasColumnType("char(36)");
+                    }
+                }
 
                 //if(typeof(ISoftDelete).IsAssignableFrom(entityType))
                 //{
@@ -49,7 +60,7 @@ namespace EFCoreTest
 
                     var parameter = Expression.Parameter(entityType);
                     var body = Expression.Equal(
-                        Expression.Call(typeof(EF), nameof(EF.Property), new[] { typeof(bool)}, parameter, Expression.Constant("IsDeleted"))
+                        Expression.Call(typeof(EF), nameof(EF.Property), new[] { typeof(bool) }, parameter, Expression.Constant("IsDeleted"))
                         , Expression.Constant(false)
                     );
 
@@ -57,8 +68,8 @@ namespace EFCoreTest
                 }
 
                 var entityConfigure = Activator.CreateInstance(entityType) as EntityBase;
-                
-                if(entityConfigure != null)
+
+                if (entityConfigure != null)
                 {
                     entityConfigure.ConfigureEntity(builder);
                 }
