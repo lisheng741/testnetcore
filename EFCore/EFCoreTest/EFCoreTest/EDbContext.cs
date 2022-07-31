@@ -33,16 +33,29 @@ namespace EFCoreTest
                 .Where(t => t.IsSubclassOf(typeof(EntityBase)) && !t.IsAbstract)
                 .ToList();
 
+            //foreach (var entityType in builder.Model.GetEntityTypes())
+            //{
+            //    PropertyInfo[] propertyInfos = entityType.ClrType.GetProperties();
+            //    foreach (PropertyInfo propertyInfo in propertyInfos)
+            //    {
+            //        string propertyName = propertyInfo.Name;
+            //        if (propertyInfo.PropertyType.FullName == "System.Guid")
+            //        {
+            //            builder.Entity(entityType.ClrType).Property(propertyName).HasColumnType("char(36)");
+            //        }
+            //    }
+            //}
+
             foreach (Type entityType in entityTypes)
             {
                 EntityTypeBuilder entityTypeBuilder = builder.Entity(entityType);
 
                 // 设置 Guid 类型
                 PropertyInfo[] propertyInfos = entityType.GetProperties();
-                foreach(PropertyInfo propertyInfo in propertyInfos)
+                foreach (PropertyInfo propertyInfo in propertyInfos)
                 {
                     string propertyName = propertyInfo.Name;
-                    if(propertyInfo.PropertyType.FullName == "System.Guid")
+                    if (propertyInfo.PropertyType.FullName == "System.Guid")
                     {
                         entityTypeBuilder.Property(propertyName).HasColumnType("char(36)");
                     }

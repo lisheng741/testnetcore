@@ -2,13 +2,10 @@
 using Simple.Common.Guids;
 using System.Reflection;
 
-foreach(PropertyInfo info in typeof(TestClass).GetProperties())
+for (int i = 0; i < 10; i++)
 {
-    Console.WriteLine(info);
-    if(info.PropertyType == typeof(System.Guid))
-    {
-        Console.WriteLine(info.PropertyType.FullName);
-    }
+    Guid guid = GuidHelper.NextNew();
+    Console.WriteLine($"{i}：{guid}");
 }
 
 Console.WriteLine("---------------------");
