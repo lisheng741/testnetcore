@@ -7,6 +7,8 @@ public class EDbContext : DbContext
     public virtual DbSet<Blog> Blog { get; set; }
     public virtual DbSet<TestConcurrent> TestConcurrent { get; set; }
 
+    public virtual DbSet<TestRowVersion> TestRowVersion { get; set; }
+
     public EDbContext(DbContextOptions<EDbContext> options) : base(options) { }
 
     protected override void OnConfiguring(DbContextOptionsBuilder options)
@@ -24,7 +26,7 @@ public class EDbContext : DbContext
         var changes = ChangeTracker.Entries<TestConcurrent>();
         foreach (var change in changes)
         {
-            change.Entity.ConcurrentStamp += "A"; 
+            change.Entity.ConcurrentStamp += "A";
         }
 
         return base.SaveChanges();

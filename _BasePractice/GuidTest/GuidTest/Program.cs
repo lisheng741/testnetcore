@@ -2,6 +2,22 @@
 using Simple.Common.Guids;
 using System.Reflection;
 
+// Guid 默认值
+
+TestClass test = new TestClass();
+
+if(test.Id == default)
+{
+    test.Id = Guid.NewGuid();
+}
+
+Guid? nullGuid = default;
+Guid notNullGuid = default;
+
+
+
+// 连续 Guid 测试
+
 for (int i = 0; i < 10; i++)
 {
     Guid guid = GuidHelper.NextNew();

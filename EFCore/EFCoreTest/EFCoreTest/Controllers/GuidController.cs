@@ -57,7 +57,7 @@ public class GuidController : ControllerBase
         {
             var guid = new TestGuid1()
             {
-                Id = SequentialGuidGenerator.Next(SequentialGuidType.AsString),
+                Id = SequentialGuidGenerator.Create(SequentialGuidType.AsString),
                 //Id = GuidHelper.Next(),
                 //Id = GuidHelper.Create(),
                 //Id = Guid.NewGuid(),

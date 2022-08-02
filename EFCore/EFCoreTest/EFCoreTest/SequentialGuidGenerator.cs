@@ -53,10 +53,19 @@ public class SequentialGuidGenerator
         // the timestamp generated in the case of high concurrency may be the same, 
         // resulting in the Guid generated at the same time not being sequential.
         // See: https://github.com/abpframework/abp/issues/11453
+        // Backward compatibility.
         long timestamp = DateTime.UtcNow.Ticks;
+        long milliseconds = timestamp / 10000L;
+        long remainderTicks = timestamp % 10000L;
 
         // Then get the bytes
-        byte[] timestampBytes = BitConverter.GetBytes(timestamp);
+        byte[] timestampBytes = new byte[8];
+        byte[] millisecondsBytes = BitConverter.GetBytes(milliseconds);
+        byte[] remainderTicksBytes = BitConverter.GetBytes(remainderTicks);
+
+        // Merge two arrays
+        Buffer.BlockCopy(millisecondsBytes, 0, timestampBytes, 2, 6);
+        Buffer.BlockCopy(remainderTicksBytes, 0, timestampBytes, 0, 2);
 
         // Since we're converting from an Int64, we have to reverse on
         // little-endian systems.
