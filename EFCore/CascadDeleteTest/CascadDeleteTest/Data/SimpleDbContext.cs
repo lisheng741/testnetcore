@@ -1,4 +1,5 @@
-﻿using System.Linq.Expressions;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq.Expressions;
 using System.Reflection;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Metadata;
@@ -48,6 +49,16 @@ public class SimpleDbContext : DbContext
         foreach (var entityType in builder.Model.GetEntityTypes())
         {
             EntityTypeBuilder entityTypeBuilder = builder.Entity(entityType.ClrType);
+
+            // Guid 主键默认不自动设置
+            if(typeof(EntityBase<Guid>).IsAssignableFrom(entityType.ClrType))
+            {
+                PropertyBuilder idPropertyBuilder = entityTypeBuilder.Property(nameof(EntityBase<Guid>.Id));
+                if (!idPropertyBuilder.Metadata.PropertyInfo!.IsDefined(typeof(DatabaseGeneratedAttribute), true))
+                {
+                    entityTypeBuilder.Property(nameof(EntityBase<Guid>.Id)).ValueGeneratedNever();
+                }
+            }
 
             // 表名注释
             string entitySummary = entityType.ClrType.GetSummary();
@@ -192,7 +203,10 @@ public class SimpleDbContext : DbContext
         {
             if (entityWithGuidId.Id == default)
             {
-                entityWithGuidId.Id = GuidHelper.Next();
+                Guid id = GuidHelper.Next();
+                //entry.Property(nameof(EntityBase<Guid>.Id)).OriginalValue = id;
+                entry.Property(nameof(EntityBase<Guid>.Id)).CurrentValue = id;
+                //entityWithGuidId.Id = id;
             }
         }
 
