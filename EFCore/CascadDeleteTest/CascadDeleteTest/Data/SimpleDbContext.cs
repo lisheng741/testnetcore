@@ -72,10 +72,12 @@ public class SimpleDbContext : DbContext
             foreach (var propertyInfo in propertyInfos)
             {
                 string propertyName = propertyInfo.Name;
-
+                
                 // 属性注释
                 string propertySummary = propertyInfo.GetSummary();
-                if (!string.IsNullOrEmpty(propertySummary))
+                if (!string.IsNullOrEmpty(propertySummary) && 
+                    !typeof(EntityBase).IsAssignableFrom(propertyInfo.PropertyType) && 
+                    !typeof(IEnumerable<EntityBase>).IsAssignableFrom(propertyInfo.PropertyType))
                 {
                     entityTypeBuilder.Property(propertyName).HasComment(propertySummary);
                 }

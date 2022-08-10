@@ -3,12 +3,21 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EFCoreMySqlConcurrencyTest.Models;
 
+public class Person : EntityBase<Guid>
+{
+    public string? Name { get; set; }
+    public List<Blog> Blogs { get; set; } = new List<Blog>();
+}
+
 public class Blog : EntityBase<Guid>
 {
     /// <summary>
     /// 博客名
     /// </summary>
     public string? Name { get; set; }
+
+    public Guid? PersonId { get; set; }
+    public Person? Person { get; set; }
 
     /// <summary>
     /// 帖子列表

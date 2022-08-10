@@ -2,6 +2,14 @@
 using Simple.Common.Guids;
 using System.Reflection;
 
+// Guid 类型
+
+var guidType = typeof(Guid);
+var guidNullType = typeof(Guid?);
+Console.WriteLine(typeof(Guid).FullName);
+Console.WriteLine(typeof(Guid?).FullName);
+
+
 // Guid 默认值
 
 TestClass test = new TestClass();

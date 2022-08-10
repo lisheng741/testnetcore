@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Simple.Repository;
 
@@ -10,9 +11,10 @@ using Simple.Repository;
 namespace CascadDeleteTest.Migrations
 {
     [DbContext(typeof(SimpleDbContext))]
-    partial class SimpleDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220806030320_0806")]
+    partial class _0806
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -24,8 +26,7 @@ namespace CascadDeleteTest.Migrations
             modelBuilder.Entity("CascadDeleteTest.Models.Role", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("char(36)")
-                        .HasComment("主键");
+                        .HasColumnType("char(36)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -39,8 +40,7 @@ namespace CascadDeleteTest.Migrations
             modelBuilder.Entity("CascadDeleteTest.Models.User", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("char(36)")
-                        .HasComment("主键");
+                        .HasColumnType("char(36)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -73,19 +73,19 @@ namespace CascadDeleteTest.Migrations
             modelBuilder.Entity("EFCoreMySqlConcurrencyTest.Models.Blog", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("char(36)")
-                        .HasComment("主键");
+                        .HasColumnType("char(36)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)")
-                        .HasComment("博客名");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PersonId")
+                        .IsRequired()
                         .HasColumnType("char(36)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PersonId");
+                    b.HasIndex("PersonId")
+                        .IsUnique();
 
                     b.ToTable("Blog");
                 });
@@ -93,8 +93,7 @@ namespace CascadDeleteTest.Migrations
             modelBuilder.Entity("EFCoreMySqlConcurrencyTest.Models.Person", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("char(36)")
-                        .HasComment("主键");
+                        .HasColumnType("char(36)");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -107,15 +106,13 @@ namespace CascadDeleteTest.Migrations
             modelBuilder.Entity("EFCoreMySqlConcurrencyTest.Models.Post", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("char(36)")
-                        .HasComment("主键");
+                        .HasColumnType("char(36)");
 
                     b.Property<string>("BlogId")
                         .HasColumnType("char(36)");
 
                     b.Property<string>("Title")
-                        .HasColumnType("nvarchar(max)")
-                        .HasComment("标题");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -146,9 +143,10 @@ namespace CascadDeleteTest.Migrations
             modelBuilder.Entity("EFCoreMySqlConcurrencyTest.Models.Blog", b =>
                 {
                     b.HasOne("EFCoreMySqlConcurrencyTest.Models.Person", "Person")
-                        .WithMany("Blogs")
-                        .HasForeignKey("PersonId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .WithOne("Blog")
+                        .HasForeignKey("EFCoreMySqlConcurrencyTest.Models.Blog", "PersonId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Person");
                 });
@@ -182,7 +180,8 @@ namespace CascadDeleteTest.Migrations
 
             modelBuilder.Entity("EFCoreMySqlConcurrencyTest.Models.Person", b =>
                 {
-                    b.Navigation("Blogs");
+                    b.Navigation("Blog")
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

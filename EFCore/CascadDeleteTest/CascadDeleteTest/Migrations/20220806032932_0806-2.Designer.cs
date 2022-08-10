@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Simple.Repository;
 
@@ -10,9 +11,10 @@ using Simple.Repository;
 namespace CascadDeleteTest.Migrations
 {
     [DbContext(typeof(SimpleDbContext))]
-    partial class SimpleDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220806032932_0806-2")]
+    partial class _08062
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -24,8 +26,7 @@ namespace CascadDeleteTest.Migrations
             modelBuilder.Entity("CascadDeleteTest.Models.Role", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("char(36)")
-                        .HasComment("主键");
+                        .HasColumnType("char(36)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -39,8 +40,7 @@ namespace CascadDeleteTest.Migrations
             modelBuilder.Entity("CascadDeleteTest.Models.User", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("char(36)")
-                        .HasComment("主键");
+                        .HasColumnType("char(36)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -73,12 +73,10 @@ namespace CascadDeleteTest.Migrations
             modelBuilder.Entity("EFCoreMySqlConcurrencyTest.Models.Blog", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("char(36)")
-                        .HasComment("主键");
+                        .HasColumnType("char(36)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)")
-                        .HasComment("博客名");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PersonId")
                         .HasColumnType("char(36)");
@@ -93,8 +91,7 @@ namespace CascadDeleteTest.Migrations
             modelBuilder.Entity("EFCoreMySqlConcurrencyTest.Models.Person", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("char(36)")
-                        .HasComment("主键");
+                        .HasColumnType("char(36)");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -107,15 +104,13 @@ namespace CascadDeleteTest.Migrations
             modelBuilder.Entity("EFCoreMySqlConcurrencyTest.Models.Post", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("char(36)")
-                        .HasComment("主键");
+                        .HasColumnType("char(36)");
 
                     b.Property<string>("BlogId")
                         .HasColumnType("char(36)");
 
                     b.Property<string>("Title")
-                        .HasColumnType("nvarchar(max)")
-                        .HasComment("标题");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
