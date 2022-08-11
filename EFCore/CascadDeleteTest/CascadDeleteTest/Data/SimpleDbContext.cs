@@ -39,6 +39,8 @@ public class SimpleDbContext : DbContext
             builder.Entity(entityType);
         }
 
+        builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
         // 因为 ConfigureEntity 是一个泛型方法，需要先将其获取为 MethodInfo
         MethodInfo configureEntity = typeof(SimpleDbContext).GetMethod(
             nameof(ConfigureEntity),
@@ -68,22 +70,19 @@ public class SimpleDbContext : DbContext
             }
 
             // 遍历实体属性
-            PropertyInfo[] propertyInfos = entityType.ClrType.GetProperties();
-            foreach (var propertyInfo in propertyInfos)
+            foreach (var mutableProperty in entityType.GetProperties())
             {
-                string propertyName = propertyInfo.Name;
+                string propertyName = mutableProperty.Name;
                 
                 // 属性注释
-                string propertySummary = propertyInfo.GetSummary();
-                if (!string.IsNullOrEmpty(propertySummary) && 
-                    !typeof(EntityBase).IsAssignableFrom(propertyInfo.PropertyType) && 
-                    !typeof(IEnumerable<EntityBase>).IsAssignableFrom(propertyInfo.PropertyType))
+                string? propertySummary = mutableProperty.PropertyInfo?.GetSummary();
+                if (!string.IsNullOrEmpty(propertySummary))
                 {
                     entityTypeBuilder.Property(propertyName).HasComment(propertySummary);
                 }
 
                 // Guid 处理为 char(36), 这样不论是 SqlServer 还是 MySql 都可以按字符串来处理 Guid，解决数据库排序方式不一致的问题
-                if (propertyInfo.PropertyType.FullName == "System.Guid")
+                if (mutableProperty.ClrType.FullName == "System.Guid")
                 {
                     entityTypeBuilder.Property(propertyName).HasColumnType("char(36)");
                 }

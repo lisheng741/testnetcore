@@ -33,7 +33,7 @@ namespace CascadDeleteTest.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Role");
+                    b.ToTable("Role", (string)null);
                 });
 
             modelBuilder.Entity("CascadDeleteTest.Models.User", b =>
@@ -48,7 +48,7 @@ namespace CascadDeleteTest.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("User");
+                    b.ToTable("User", (string)null);
                 });
 
             modelBuilder.Entity("CascadDeleteTest.Models.UserRole", b =>
@@ -67,7 +67,7 @@ namespace CascadDeleteTest.Migrations
                     b.HasIndex("UserId")
                         .IsUnique();
 
-                    b.ToTable("UserRole");
+                    b.ToTable("UserRole", (string)null);
                 });
 
             modelBuilder.Entity("EFCoreMySqlConcurrencyTest.Models.Blog", b =>
@@ -87,7 +87,7 @@ namespace CascadDeleteTest.Migrations
 
                     b.HasIndex("PersonId");
 
-                    b.ToTable("Blog");
+                    b.ToTable("Blog", (string)null);
                 });
 
             modelBuilder.Entity("EFCoreMySqlConcurrencyTest.Models.Person", b =>
@@ -101,7 +101,7 @@ namespace CascadDeleteTest.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Person");
+                    b.ToTable("Person", (string)null);
                 });
 
             modelBuilder.Entity("EFCoreMySqlConcurrencyTest.Models.Post", b =>
@@ -121,7 +121,7 @@ namespace CascadDeleteTest.Migrations
 
                     b.HasIndex("BlogId");
 
-                    b.ToTable("Post");
+                    b.ToTable("Post", (string)null);
                 });
 
             modelBuilder.Entity("CascadDeleteTest.Models.UserRole", b =>
