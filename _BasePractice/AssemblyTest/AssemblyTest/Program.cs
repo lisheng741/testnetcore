@@ -19,6 +19,8 @@ AssemblyHelper.GetAssemblies(new List<string>() { "AssemblyLibAutoTest" });
 var assemblies11 = AssemblyLoadContext.Default.Assemblies.ToList();
 var assemblies12 = AppDomain.CurrentDomain.GetAssemblies();
 
+
+
 var lst = assemblies12.Where(a => a.GetTypes()
         .Where(t => t.IsSubclassOf(typeof(Profile)))
         .Any()
