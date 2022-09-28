@@ -1,9 +1,4 @@
-﻿using Simple.Common.Guids;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Simple.Common.Helpers;
 
 namespace System;
 

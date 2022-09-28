@@ -1,6 +1,18 @@
 ﻿using GuidTest;
-using Simple.Common.Guids;
+using Simple.Common.Helpers;
 using System.Reflection;
+
+for (int j = 0; j < 10; j++)
+{
+    for (int i = 0; i < 5; i++)
+    {
+        Console.WriteLine($"new Guid(\"{GuidHelper.Next()}\"),");
+    }
+    Console.WriteLine("");
+    Console.WriteLine("-------");
+    Console.WriteLine("");
+}
+
 
 // Guid 类型
 
@@ -28,8 +40,8 @@ Guid notNullGuid = default;
 
 for (int i = 0; i < 10; i++)
 {
-    Guid guid = GuidHelper.NextNew();
-    Console.WriteLine($"{i}：{guid}");
+    //Guid guid = GuidHelper.NextNew();
+    //Console.WriteLine($"{i}：{guid}");
 }
 
 Console.WriteLine("---------------------");

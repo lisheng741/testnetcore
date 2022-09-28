@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiAppXaml.Views.TestPage"
+             Title="TestPage">
+    <VerticalStackLayout>
+        <Slider VerticalOptions="Center"
+                ValueChanged="OnSliderValueChanged"/>
+
+        <Label x:Name ="valueLabel" 
+               Text="A simple label"
+               FontSize="18"
+               HorizontalOptions="Center"
+               VerticalOptions="Center"/>
+
+        <Button Text="Click Me!"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                Clicked="OnButtonClicked"/>
+    </VerticalStackLayout>
+</ContentPage>
