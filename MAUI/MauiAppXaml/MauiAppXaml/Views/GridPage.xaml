@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:XamlTest"
+             x:Class="MauiAppXaml.Views.GridPage"
+             Title="GridPage">
+    <ContentPage.Resources>
+        <LayoutOptions x:Key="horzOptions"
+                       Alignment="Center"/>
+        <OnPlatform x:Key="backgroundColor" x:TypeArguments="Color">
+            <On Platform="WinUI" Value="Red" />
+            <On Platform="Android" Value="Aqua"/>
+        </OnPlatform>
+    </ContentPage.Resources>
+    <Grid>
+        <Grid.Resources>
+            <LayoutOptions x:Key="horz1Options"
+                       Alignment="Center"/>
+        </Grid.Resources>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <!--<RowDefinition Height="100" />-->
+            <RowDefinition Height="{OnPlatform 100, WinUI=200, Android= 50}" />
+            <!-- 下面这种写法报错 -->
+            <!--<OnPlatform x:TypeArguments="RowDefinition">
+                <On Platform="WinUI">
+                    <RowDefinition Height="200" />
+                </On>
+                <On Platform="Android">
+                    <RowDefinition Height="50" />
+                </On>
+            </OnPlatform>-->
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+            <!--<ColumnDefinition Width="100" />-->
+            <ColumnDefinition Width="{OnPlatform 100, WinUI=200, Android= 50}" />
+        </Grid.ColumnDefinitions>
+
+
+        <Label Text="Fixed 100x100"
+               Grid.Row="2" Grid.Column="2"
+               TextColor="{x:Static local:AppConstants.TextColor}"
+               BackgroundColor="{StaticResource backgroundColor}"
+               HorizontalTextAlignment="{StaticResource horz1Options}"
+               VerticalTextAlignment="Center" />
+
+    </Grid>
+</ContentPage>

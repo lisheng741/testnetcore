@@ -31,7 +31,13 @@
             <Button 
                 Text="Navigate to TestPage"
                 HorizontalOptions="Center"
-                Clicked="OnNavigateClicked"
+                Clicked="OnNavigateTestClicked"
+                />
+            
+            <Button 
+                Text="Navigate to TestPage"
+                HorizontalOptions="Center"
+                Clicked="OnNavigateGridClicked"
                 />
 
         </VerticalStackLayout>

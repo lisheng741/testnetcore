@@ -1,0 +1,18 @@
+﻿<Window x:Class="WpfRS232Test.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfRS232Test"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Button Content="Open" HorizontalAlignment="Left" Margin="479,143,0,0" VerticalAlignment="Top" Click="OpenPortClicked"/>
+        <ComboBox x:Name="comboBox" HorizontalAlignment="Left" Margin="315,141,0,0" VerticalAlignment="Top" Width="120"/>
+        <Button Content="Send" HorizontalAlignment="Left" Margin="479,198,0,0" VerticalAlignment="Top" Click="SendClicked"/>
+        <Button Content="Close" HorizontalAlignment="Left" Margin="550,148,0,0" VerticalAlignment="Top" Click="ClosePortClicked"/>
+        <TextBox x:Name="sendText" HorizontalAlignment="Left" Margin="49,253,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="301" Height="121"/>
+        <TextBox x:Name="receiveText" HorizontalAlignment="Left" Margin="437,253,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="286" Height="121"/>
+
+    </Grid>
+</Window>

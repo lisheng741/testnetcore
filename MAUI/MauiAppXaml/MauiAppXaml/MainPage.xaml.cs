@@ -37,9 +37,14 @@ public partial class MainPage : ContentPage
 		SemanticScreenReader.Announce(CounterBtn.Text);
 	}
 
-	private async void OnNavigateClicked(object sender, EventArgs e)
+	private async void OnNavigateGridClicked(object sender, EventArgs e)
 	{
-		await Navigation.PushAsync(new TestPage());
-	}
+		await Navigation.PushAsync(new GridPage());
+    }
+
+    private async void OnNavigateTestClicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new TestPage());
+    }
 }
 

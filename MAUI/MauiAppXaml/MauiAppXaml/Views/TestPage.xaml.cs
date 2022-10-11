@@ -15,6 +15,17 @@ public partial class TestPage : ContentPage
 	async void OnButtonClicked(object sender, EventArgs e)
 	{
 		Button button = sender as Button;
-		await DisplayAlert("Clicked!", $"The button labeled '{button.Text}'", "OK");
+		if (OperatingSystem.IsAndroid())
+        {
+            await DisplayAlert("Clicked!", $"Android! The button labeled '{button.Text}'", "OK");
+        }
+        else if (OperatingSystem.IsWindows())
+        {
+            await DisplayAlert("Clicked!", $"Windows! The button labeled '{button.Text}'", "OK");
+        }
+		else
+        {
+            await DisplayAlert("Clicked!", $"Other! The button labeled '{button.Text}'", "OK");
+        }
 	}
 }

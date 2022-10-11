@@ -3,6 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiAppXaml.Views.TestPage"
              Title="TestPage">
+    <ContentPage.Resources>
+        <LayoutOptions x:Key="horzOptions"
+                       Alignment="Center"/>
+        <OnPlatform x:Key="pbColor" x:TypeArguments="Color">
+            <On Platform="WinUI" Value="Red" />
+        </OnPlatform>
+    </ContentPage.Resources>
     <VerticalStackLayout>
         <Slider VerticalOptions="Center"
                 ValueChanged="OnSliderValueChanged"/>
@@ -10,12 +17,24 @@
         <Label x:Name ="valueLabel" 
                Text="A simple label"
                FontSize="18"
-               HorizontalOptions="Center"
+               TextColor="{StaticResource pbColor}"
+               HorizontalOptions="{StaticResource horzOptions}"
                VerticalOptions="Center"/>
 
         <Button Text="Click Me!"
                 HorizontalOptions="Center"
                 VerticalOptions="Center"
                 Clicked="OnButtonClicked"/>
+
+        <Slider x:Name="slider" VerticalOptions="Center"/>
+        <Label BindingContext="{x:Reference slider}" 
+               Text="{Binding Value, StringFormat='{0:F3}'}"
+               FontSize="18"
+               TextColor="{StaticResource pbColor}"
+               HorizontalOptions="{StaticResource horzOptions}"
+               VerticalOptions="Center"/>
+
+        <Slider BindingContext="{x:Reference slider}" 
+                Value="{Binding Value, Mode=OneWayToSource}"/>
     </VerticalStackLayout>
 </ContentPage>
