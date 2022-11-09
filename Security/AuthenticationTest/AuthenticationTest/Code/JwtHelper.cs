@@ -15,8 +15,12 @@ public class JwtHelper
         _configuration = configuration;
     }
 
-    public string CreateToken()
+    public string CreateToken(bool isSimple = false)
     {
+        var issuer = isSimple ? "WebAppIssuer" : _configuration["Jwt:Issuer"];
+        var audience = isSimple ? "WebAppAudience" : _configuration["Jwt:Audience"];
+        var secret = isSimple ? "8kh2luzmp0oq9wfbdeasygj647vr531n678fs" : _configuration["Jwt:SecretKey"];
+
         // 1. 定义需要使用到的Claims
         var claims = new[]
         {
@@ -32,7 +36,7 @@ public class JwtHelper
         };
 
         // 2. 从 appsettings.json 中读取SecretKey
-        var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:SecretKey"]));
+        var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secret));
 
         // 3. 选择加密算法
         var algorithm = SecurityAlgorithms.HmacSha256;
@@ -42,8 +46,8 @@ public class JwtHelper
 
         // 5. 根据以上，生成token
         var jwtSecurityToken = new JwtSecurityToken(
-            _configuration["Jwt:Issuer"],     //Issuer
-            _configuration["Jwt:Audience"],   //Audience
+            issuer,     //Issuer
+            audience,   //Audience
             claims,                          //Claims,
             DateTime.Now,                    //notBefore
             DateTime.Now.AddSeconds(30),    //expires

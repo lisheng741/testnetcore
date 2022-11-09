@@ -9,6 +9,14 @@ namespace AuthenticationTest.Controllers;
 public class UserController : ControllerBase
 {
     [HttpGet]
+    [Authorize(AuthenticationSchemes = "SimpleApp")]
+    public ActionResult<string> SimpleApp() => "test";
+
+    [HttpGet]
+    [Authorize(AuthenticationSchemes = "SimpleApp,Bearer")]
+    public ActionResult<string> SimpleAppAndBearer() => "test";
+
+    [HttpGet]
     [Authorize(Permissions.UserCreate)]
     public ActionResult<string> UserCreate() => "UserCreate";
 

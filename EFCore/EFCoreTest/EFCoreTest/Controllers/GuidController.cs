@@ -52,12 +52,13 @@ public class GuidController : ControllerBase
     public string Create1(int begin = 0)
     {
         List<TestGuid1> list = new List<TestGuid1>();
-        int end = begin + 1000;
+        int end = begin + 100;
         for (int i = begin; i < end; i++)
         {
             var guid = new TestGuid1()
             {
-                Id = SequentialGuidGenerator.Create(SequentialGuidType.AsString),
+                //Id = SequentialGuidGenerator.Create(SequentialGuidType.AsString),
+                Id = GuidHelper.Create(SequentialGuidType.AsString),
                 //Id = GuidHelper.Next(),
                 //Id = GuidHelper.Create(),
                 //Id = Guid.NewGuid(),

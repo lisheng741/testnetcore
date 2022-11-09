@@ -35,6 +35,22 @@ builder.Services.AddAuthentication(options =>
 {
     options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
 })
+.AddJwtBearer("SimpleApp", options =>
+{
+    options.TokenValidationParameters = new TokenValidationParameters()
+    {
+        ValidateIssuer = true, //是否验证Issuer
+        ValidIssuer = "WebAppIssuer", //发行人Issuer
+        ValidateAudience = true, //是否验证Audience
+        ValidAudience = "WebAppAudience", //订阅人Audience
+        ValidateIssuerSigningKey = true, //是否验证SecurityKey
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("8kh2luzmp0oq9wfbdeasygj647vr531n678fs")), //SecurityKey
+        ValidateLifetime = true, //是否验证失效时间
+        ClockSkew = TimeSpan.FromSeconds(300), //过期时间容错值，解决服务器端时间不同步问题（秒）
+        RequireExpirationTime = true,
+        NameClaimType = JwtClaimTypes.Name
+    };
+})
 .AddJwtBearer(options =>
 {
     options.TokenValidationParameters = new TokenValidationParameters()

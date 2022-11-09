@@ -45,6 +45,60 @@ public static class GuidHelper
         return Next(SequentialGuidType);
     }
 
+    public static Guid Create(SequentialGuidType guidType)
+    {
+        // We start with 16 bytes of cryptographically strong random data.
+        byte[] randomBytes = new byte[10];
+        _randomNumberGenerator.GetBytes(randomBytes);
+
+        long timestamp = DateTime.UtcNow.Ticks / 10000L;
+
+        // Then get the bytes
+        byte[] timestampBytes = BitConverter.GetBytes(timestamp);
+
+        // Since we're converting from an Int64, we have to reverse on
+        // little-endian systems.
+        if (BitConverter.IsLittleEndian)
+        {
+            Array.Reverse(timestampBytes);
+        }
+
+        byte[] guidBytes = new byte[16];
+
+        switch (guidType)
+        {
+            case SequentialGuidType.AsString:
+            case SequentialGuidType.AsBinary:
+
+                // For string and byte-array version, we copy the timestamp first, followed
+                // by the random data.
+                Buffer.BlockCopy(timestampBytes, 2, guidBytes, 0, 6);
+                Buffer.BlockCopy(randomBytes, 0, guidBytes, 6, 10);
+
+                // If formatting as a string, we have to compensate for the fact
+                // that .NET regards the Data1 and Data2 block as an Int32 and an Int16,
+                // respectively.  That means that it switches the order on little-endian
+                // systems.  So again, we have to reverse.
+                if (guidType == SequentialGuidType.AsString && BitConverter.IsLittleEndian)
+                {
+                    Array.Reverse(guidBytes, 0, 4);
+                    Array.Reverse(guidBytes, 4, 2);
+                }
+
+                break;
+
+            case SequentialGuidType.AtEnd:
+
+                // For sequential-at-the-end versions, we copy the random data first,
+                // followed by the timestamp.
+                Buffer.BlockCopy(randomBytes, 0, guidBytes, 0, 10);
+                Buffer.BlockCopy(timestampBytes, 2, guidBytes, 10, 6);
+                break;
+        }
+
+        return new Guid(guidBytes);
+    }
+
     /// <summary>
     /// 生成连续 Guid（生成的 Guid 并不符合 RFC 4122 标准）.
     /// 来源：Abp. from jhtodd/SequentialGuid https://github.com/jhtodd/SequentialGuid/blob/master/SequentialGuid/Classes/SequentialGuid.cs .

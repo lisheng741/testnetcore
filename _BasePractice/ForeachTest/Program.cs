@@ -1,6 +1,29 @@
 ﻿// See https://aka.ms/new-console-template for more information
 Console.WriteLine("Hello, World!");
 
+List<int> lst = new List<int>()
+{
+    0,1,2,3,4,5
+};
+
+for(var i = 0; i < lst.Count; i++)
+{
+    Console.WriteLine(i);
+    if(i == 2)
+    {
+        lst.Remove(i);
+    }
+}
+
+Console.WriteLine("---------------");
+
+foreach(var i in lst)
+{
+    Console.WriteLine(i);
+    break;
+        lst.Remove(i);
+}
+
 var root = new Recursive("root");
 for (int i = 0; i < 5; i++)
 {

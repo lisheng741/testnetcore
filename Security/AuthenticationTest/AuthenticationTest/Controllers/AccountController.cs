@@ -15,6 +15,12 @@ public class AccountController : ControllerBase
     }
 
     [HttpGet]
+    public ActionResult<string> GetSimpleToken()
+    {
+        return _jwtHelper.CreateToken(true);
+    }
+
+    [HttpGet]
     public ActionResult<string> GetToken()
     {
         return _jwtHelper.CreateToken();
