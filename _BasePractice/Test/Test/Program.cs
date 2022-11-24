@@ -1,4 +1,25 @@
 ﻿
+// C#11 语法, 至少3个双引号(""")开头和结尾，内容可以输入任何原始字符
+// 单行: 左引号，右引号，内容 三者同行
+string singleLine = """Content begin "Hello World!" end.""";
+string singleLine1 = """"Content begin "Hello World!" """ end."""";
+
+// 多行：左引号，右引号各一行，内容需与右引号缩进对齐
+string multiLine = """
+    Content begin "Hello World!" /\n<>"" end.
+    """;
+Console.WriteLine(multiLine); // => Content begin "Hello World!" /\n<>"" end.
+
+
+var sb = new System.Text.StringBuilder();
+for (int i = 0; i < 100; i++)
+{
+    sb.Append(i.ToString());
+}
+Console.WriteLine(sb);
+Console.WriteLine(sb.ToString());
+
+/////////////////////////
 
 Func<List<int>, int, List<int>> intSet = Set;
 
