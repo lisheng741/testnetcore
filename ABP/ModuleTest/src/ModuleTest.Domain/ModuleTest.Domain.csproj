@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\common.props" />
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>ModuleTest</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.Ddd.Domain" Version="6.0.1" />
+    <ProjectReference Include="..\ModuleTest.Domain.Shared\ModuleTest.Domain.Shared.csproj" />
+  </ItemGroup>
+
+</Project>
