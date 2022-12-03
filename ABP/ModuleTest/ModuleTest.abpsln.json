@@ -1,7 +1,0 @@
-{
-  "modules": {
-    "ModuleTest": {
-      "path": "ModuleTest.abpmdl.json"
-    }
-  }
-}

@@ -1,12 +1,4 @@
 ﻿
-
-Type type = typeof(Program);
-Type? typeNull = null;
-Console.WriteLine(type == typeNull);
-
-
-
-
 // C#11 语法, 至少3个双引号(""")开头和结尾，内容可以输入任何原始字符
 // 单行: 左引号，右引号，内容 三者同行
 string singleLine = """Content begin "Hello World!" end.""";
