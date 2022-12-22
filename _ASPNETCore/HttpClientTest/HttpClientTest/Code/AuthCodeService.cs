@@ -65,10 +65,10 @@ public class AuthCodeService
 
 	public async Task<string> GetInfoAsync()
     {
-        foreach (var cookie in Cookies)
-        {
-            _httpClient.DefaultRequestHeaders.Add("Cookie", cookie);
-        }
+        //foreach (var cookie in Cookies)
+        //{
+        //    _httpClient.DefaultRequestHeaders.Add("Cookie", cookie);
+        //}
 
         var response = await _httpClient.GetAsync("/userdetail.php");
 		response.EnsureSuccessStatusCode();

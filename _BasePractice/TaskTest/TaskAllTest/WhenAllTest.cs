@@ -14,7 +14,7 @@ internal class WhenAllTest
     //    Console.WriteLine("结束------");
     //}
 
-    static async Task Main(string[] args)
+    static async Task Main1(string[] args)
     {
         var tasks = new List<Task>();
 
