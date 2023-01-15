@@ -1,9 +1,16 @@
 ﻿using Microsoft.AspNetCore.Mvc.Filters;
+using System.Drawing;
 
 namespace ActionFilterTest.Filters
 {
     public class Test2ActionFilter : ActionFilterAttribute
     {
+
+
+        public Test2ActionFilter() : base()
+        {
+        }
+
         public override void OnActionExecuted(ActionExecutedContext context)
         {
             Console.WriteLine("Test2ActionFilter 4");

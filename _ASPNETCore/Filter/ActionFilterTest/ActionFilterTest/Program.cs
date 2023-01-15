@@ -6,6 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers(options =>
 {
+    //options.Filters.Add<Test1ActionFilter>(1); // 这种情况才有效
     options.Filters.Add<Test1ActionFilter>();
     options.Filters.Add<Test2ActionFilter>();
     options.Filters.Add<Test3ActionFilter>();
