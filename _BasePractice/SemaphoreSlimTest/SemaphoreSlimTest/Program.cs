@@ -1,3 +1,5 @@
+using SemaphoreSlimTest;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -22,6 +24,14 @@ app.MapGet("/weatherforecast", () =>
 })
 .WithName("GetWeatherForecast");
 
+Parallel.For(0, 5, async i =>
+{
+    var test = new Test();
+    await test.Show(i.ToString());
+});
+
+System.Console.WriteLine("=================");
+
 var semaphoreSlim = new SemaphoreSlim(1);
 
 for (var i = 0; i < 6; i++)
@@ -31,7 +41,7 @@ for (var i = 0; i < 6; i++)
 
 Parallel.For(0, 5, i =>
 {
-    Thread.Sleep(500); 
+    Thread.Sleep(500);
     PassByThread(i);
 });
 
@@ -58,7 +68,7 @@ void Pass(int i)
 
 void PassByThread(int i)
 {
-    
+
     try
     {
         semaphoreSlim.Wait();
